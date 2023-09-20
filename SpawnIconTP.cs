@@ -41,7 +41,7 @@ public class SpawnIconTP : Mod
 
     private static void DrawIcon(MapOverlayDrawContext context, Texture2D tex, Vector2 pos, string hoverTextKey, ref string text, Action teleport)
     {
-        var result = context.Draw(tex, pos, Color.White, new(1, 1, 0, 0), 1f, 2f, Alignment.Bottom);
+        var result = context.Draw(tex, pos, Color.White, new(1, 1, 0, 0), 1f, 2f, Alignment.Center);
         if (!result.IsMouseOver)
             return;
 
