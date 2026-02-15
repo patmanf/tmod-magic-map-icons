@@ -51,6 +51,7 @@ internal class ConchMapLayer : ModMapLayer
 
     private static void TeleportHell()
     {
+        SoundEngine.PlaySound(SoundID.Item6);
         Player player = Main.LocalPlayer;
 
         bool canSpawn = false;
