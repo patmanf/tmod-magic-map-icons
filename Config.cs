@@ -1,5 +1,4 @@
-﻿using Humanizer;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
@@ -44,29 +43,29 @@ internal class Config : ModConfig
 
     public Config()
     {
-        MirrorItems = new()
-        {
+        MirrorItems =
+        [
             new ItemDefinition(ItemID.MagicMirror),
             new ItemDefinition(ItemID.IceMirror),
             new ItemDefinition(ItemID.CellPhone)
-        };
+        ];
 
-        MagicConchItems = new()
-        {
+        MagicConchItems =
+        [
             new ItemDefinition(ItemID.MagicConch)
-        };
+        ];
 
-        DemonConchItems = new()
-        {
+        DemonConchItems =
+        [
             new ItemDefinition(ItemID.DemonConch)
-        };
+        ];
 
-        ShellphoneItems = new()
-        {
+        ShellphoneItems =
+        [
             new ItemDefinition(ItemID.Shellphone),
             new ItemDefinition(ItemID.ShellphoneSpawn),
             new ItemDefinition(ItemID.ShellphoneOcean),
             new ItemDefinition(ItemID.ShellphoneHell)
-        };
+        ];
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -22,7 +23,7 @@ public class SpawnIconTP : Mod
         On_SpawnMapLayer.Draw += On_SpawnMapLayer_Draw;
     }
 
-    private void On_SpawnMapLayer_Draw(On_SpawnMapLayer.orig_Draw orig, SpawnMapLayer self, ref MapOverlayDrawContext context, ref string text)
+    private static void On_SpawnMapLayer_Draw(On_SpawnMapLayer.orig_Draw orig, SpawnMapLayer self, ref MapOverlayDrawContext context, ref string text)
     {
         if (!Config.Instance.Enabled)
         {
@@ -43,7 +44,7 @@ public class SpawnIconTP : Mod
 
     internal static void DrawIcon(ref MapOverlayDrawContext context, Texture2D tex, Vector2 pos, string hoverTextKey, ref string text, Action teleport)
     {
-        var result = context.Draw(tex, pos, Color.White, new(1, 1, 0, 0), 1f, 2f, Alignment.Center);
+        var result = context.Draw(tex, pos, Color.White, new SpriteFrame(1, 1, 0, 0), 1f, 2f, Alignment.Center);
         if (!result.IsMouseOver)
             return;
 
