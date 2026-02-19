@@ -1,6 +1,3 @@
-NoMirror: You need a Magic Mirror to teleport there
-TpFailed: Teleportation failed
-
 Configs: {
 	Config: {
 		DisplayName: Config [i:MagicMirror]
@@ -46,5 +43,51 @@ Configs: {
 		}
 
 		Headers.ItemLists: ""
+	}
+
+	MagicMapConfig: {
+		ShellphoneItems: {
+			Tooltip: ""
+			Label: Shellphone Items
+		}
+
+		DemonConchItems: {
+			Tooltip: ""
+			Label: Demon Conch Items
+		}
+
+		MagicConchItems: {
+			Tooltip: ""
+			Label: Magic Conch Items
+		}
+
+		MirrorItems: {
+			Tooltip: ""
+			Label: Mirror Items
+		}
+
+		Headers.ItemLists: Item Lists Header
+
+		AllowVoidBag: {
+			Tooltip: ""
+			Label: Allow Void Bag
+		}
+
+		RequireMirror: {
+			Tooltip: ""
+			Label: Require Mirror
+		}
+
+		ConchEnabled: {
+			Tooltip: ""
+			Label: Conch Enabled
+		}
+
+		Enabled: {
+			Tooltip: ""
+			Label: Enabled
+		}
+
+		DisplayName: Magic Map Config
 	}
 }
