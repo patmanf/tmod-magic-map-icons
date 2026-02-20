@@ -9,7 +9,7 @@ namespace SpawnIconTP;
 [PublicAPI]
 internal class Config : ModConfig
 {
-    public override ConfigScope Mode => ConfigScope.ClientSide;
+    public override ConfigScope Mode => ConfigScope.ServerSide;
 
     public static Config Instance;
 
