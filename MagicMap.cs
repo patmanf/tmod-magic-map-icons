@@ -12,6 +12,7 @@ public class MagicMap : Mod
 
     public enum MessageId : byte
     {
+        TeleportedHome,
         RequestOceanTeleport,
         RequestOceanPos,
         ReceiveOceanLeft,
@@ -23,6 +24,13 @@ public class MagicMap : Mod
         var msgType = (MessageId)reader.ReadByte();
         switch (msgType)
         {
+            case MessageId.TeleportedHome:
+                if (Main.netMode == NetmodeID.Server)
+                    SendTeleportedHome(whoAmI);
+                else
+                    MagicMapPlayer.Get(reader.ReadInt32()).TeleportHome();
+                break;
+            
             case MessageId.RequestOceanTeleport:
                 if (Main.netMode != NetmodeID.Server) break;
 
@@ -38,7 +46,6 @@ public class MagicMap : Mod
                     SendOceanPos(whoAmI, leftPos, false);
                 if (player.GetOceanPos(out Vector2 rightPos, true))
                     SendOceanPos(whoAmI, rightPos, true);
-
                 break;
 
             case MessageId.ReceiveOceanLeft:
@@ -48,6 +55,18 @@ public class MagicMap : Mod
                 MagicMapLayer.SetOceanPos(reader.ReadVector2(), msgType == MessageId.ReceiveOceanRight);
                 break;
         }
+    }
+
+    public static void SendTeleportedHome(int whoAmI = -1)
+    {
+        ModPacket packet = Instance.GetPacket();
+        packet.Write((byte)MessageId.TeleportedHome);
+        if (Main.netMode == NetmodeID.Server)
+        {
+            if (whoAmI == -1) return;
+            packet.Write(whoAmI);
+        }
+        packet.Send(-1, whoAmI);
     }
 
     public static void RequestOceanTeleport(bool right)

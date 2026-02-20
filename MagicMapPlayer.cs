@@ -9,6 +9,7 @@ namespace SpawnIconTP;
 public class MagicMapPlayer : ModPlayer
 {
     internal static MagicMapPlayer Get(int whoAmI) => Main.player[whoAmI].GetModPlayer<MagicMapPlayer>();
+    internal static MagicMapPlayer Get() => Get(Main.myPlayer);
 
     public override void OnEnterWorld()
     {
@@ -28,6 +29,20 @@ public class MagicMapPlayer : ModPlayer
         MagicMapLayer.SetOceanPos(oceanPosL, false);
         MagicMapLayer.SetOceanPos(oceanPosR, true);
         MagicMapLayer.HellIcon.SetPosition(hellPos);
+    }
+
+    internal void TeleportHome()
+    {
+        float speedX = Player.velocity.X * 0.5f;
+        float speedY = Player.velocity.Y * 0.5f;
+        for (int i = 0; i < 70; i++)
+            Dust.NewDust(Player.position, Player.width, Player.height, DustID.MagicMirror, speedX, speedY, 150, default, 1.5f);
+
+        Player.RemoveAllGrapplingHooks();
+        Player.Spawn(PlayerSpawnContext.RecallFromItem);
+
+        for (int i = 0; i < 70; i++)
+            Dust.NewDust(Player.position, Player.width, Player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.5f);
     }
 
     internal void TeleportOcean(bool right)

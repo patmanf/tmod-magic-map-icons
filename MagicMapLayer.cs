@@ -77,24 +77,15 @@ public class MagicMapLayer : ModMapLayer
 
     private static void ClickHome()
     {
-        Player player = Main.LocalPlayer;
-        
-        float speedX = player.velocity.X * 0.5f;
-        float speedY = player.velocity.Y * 0.5f;
-        for (int i = 0; i < 70; i++)
-            Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, speedX, speedY, 150, default, 1.5f);
-
-        player.RemoveAllGrapplingHooks();
-        player.Spawn(PlayerSpawnContext.RecallFromItem);
-
-        for (int i = 0; i < 70; i++)
-            Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.5f);
+        MagicMapPlayer.Get().TeleportHome();
+        if (Main.netMode == NetmodeID.MultiplayerClient)
+            MagicMap.SendTeleportedHome();
     }
 
     private static void ClickOcean(bool right)
     {
         if (Main.netMode == NetmodeID.SinglePlayer)
-            Main.LocalPlayer.GetModPlayer<MagicMapPlayer>().TeleportOcean(right);
+            MagicMapPlayer.Get().TeleportOcean(right);
         else
             MagicMap.RequestOceanTeleport(right);
     }
