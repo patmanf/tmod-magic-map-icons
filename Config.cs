@@ -7,11 +7,11 @@ using Terraria.ModLoader.Config;
 namespace SpawnIconTP;
 
 [PublicAPI]
-internal class MagicMapConfig : ModConfig
+internal class Config : ModConfig
 {
     public override ConfigScope Mode => ConfigScope.ClientSide;
 
-    public static MagicMapConfig Instance;
+    public static Config Instance;
 
     [DefaultValue(true)]
     [BackgroundColor(161, 219, 255)]
@@ -43,7 +43,7 @@ internal class MagicMapConfig : ModConfig
     [BackgroundColor(90, 146, 90)]
     public List<ItemDefinition> ShellphoneItems;
 
-    public MagicMapConfig()
+    public Config()
     {
         MirrorItems =
         [

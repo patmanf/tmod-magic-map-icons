@@ -35,11 +35,11 @@ public class MagicMapLayer : ModMapLayer
 
     public override void Draw(ref MapOverlayDrawContext context, ref string text)
     {
-        if (!MagicMapConfig.Instance.Enabled) return;
+        if (!Config.Instance.Enabled) return;
 
-        bool hasShellphone = !MagicMapConfig.Instance.RequireMirror || HasItems(MagicMapConfig.Instance.ShellphoneItems);
+        bool hasShellphone = !Config.Instance.RequireMirror || HasItems(Config.Instance.ShellphoneItems);
 
-        if (hasShellphone || HasItems(MagicMapConfig.Instance.MirrorItems))
+        if (hasShellphone || HasItems(Config.Instance.MirrorItems))
         {
             IMapLayer.Spawn.Hide();
 
@@ -48,21 +48,21 @@ public class MagicMapLayer : ModMapLayer
                 HomeIcon.Draw(ref context, ref text, new Vector2(Main.LocalPlayer.SpawnX, Main.LocalPlayer.SpawnY));
         }
 
-        if (!MagicMapConfig.Instance.ConchEnabled) return;
+        if (!Config.Instance.ConchEnabled) return;
 
-        if (hasShellphone || HasItems(MagicMapConfig.Instance.MagicConchItems))
+        if (hasShellphone || HasItems(Config.Instance.MagicConchItems))
         {
             OceanIconL.Draw(ref context, ref text);
             OceanIconR.Draw(ref context, ref text);
         }
 
-        if (hasShellphone || HasItems(MagicMapConfig.Instance.DemonConchItems))
+        if (hasShellphone || HasItems(Config.Instance.DemonConchItems))
             HellIcon.Draw(ref context, ref text);
     }
 
     private static bool HasItems(List<ItemDefinition> list)
     {
-        return MagicMapConfig.Instance.AllowVoidBag
+        return Config.Instance.AllowVoidBag
             ? list.Exists(item => Main.LocalPlayer.HasItemInInventoryOrOpenVoidBag(item.Type))
             : list.Exists(item => Main.LocalPlayer.HasItem(item.Type));
     }
